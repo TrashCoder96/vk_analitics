@@ -1,0 +1,12 @@
+vk:
+  val: и
+  appId: 5927678
+  secret: eMt9l8PyZEEcX6grTawH
+spring:
+  mongodb:
+    application: vk_analitics
+    host: localhost
+    port: 27017
+    database: vk_analitics
+    login: admin
+    password: admin
