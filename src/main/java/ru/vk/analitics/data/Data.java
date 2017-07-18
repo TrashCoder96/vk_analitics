@@ -17,6 +17,8 @@ public class Data {
 
 	private String type;
 
+	private String text;
+
 	public String getId() {
 		return id;
 	}
@@ -39,5 +41,13 @@ public class Data {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 }

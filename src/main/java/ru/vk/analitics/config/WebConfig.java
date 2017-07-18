@@ -2,6 +2,8 @@ package ru.vk.analitics.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import ru.vk.analitics.component.StreamComponent;
+import ru.vk.analitics.handler.StreamHandler;
 import ru.vk.analitics.service.DataService;
 import ru.vk.analitics.service.impl.DataServiceImpl;
 
@@ -15,6 +17,16 @@ public class WebConfig {
     @Bean
     public DataService dataService() {
         return new DataServiceImpl();
+    }
+
+    @Bean
+    public StreamComponent streamComponent() {
+        return new StreamComponent();
+    }
+
+    @Bean
+    public StreamHandler streamHandler() {
+        return new StreamHandler();
     }
 
 }

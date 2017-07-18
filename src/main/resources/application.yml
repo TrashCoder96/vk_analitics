@@ -1,5 +1,4 @@
 vk:
-  val: и
   appId: 5927678
   secret: eMt9l8PyZEEcX6grTawH
 spring:
@@ -10,3 +9,7 @@ spring:
     database: vk_analitics
     login: admin
     password: admin
+play:
+  websocket:
+     buffer:
+       limit: 2621440
