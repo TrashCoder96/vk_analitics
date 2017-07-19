@@ -27,5 +27,6 @@ public class StreamHandler extends StreamingEventHandler {
 		data.setText(message.getEvent().getText());
 		data.setType(message.getEvent().getEventType().getValue());
 		dataRepository.save(data);
+		System.out.println();
 	}
 }

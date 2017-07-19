@@ -1,9 +1,12 @@
 package ru.vk.analitics.component;
 
-import ru.vk.analitics.handler.StreamHandler;
-import com.vk.api.sdk.client.actors.ServiceActor;
-import com.vk.api.sdk.objects.streaming.responses.GetServerUrlResponse;
 import com.vk.api.sdk.streaming.clients.VkStreamingApiClient;
+import org.asynchttpclient.AsyncHttpClient;
+import org.asynchttpclient.AsyncHttpClientConfig;
+import org.asynchttpclient.DefaultAsyncHttpClient;
+import org.asynchttpclient.DefaultAsyncHttpClientConfig;
+import org.asynchttpclient.config.AsyncHttpClientConfigDefaults;
+import ru.vk.analitics.handler.StreamHandler;
 import com.vk.api.sdk.streaming.clients.actors.StreamingActor;
 import com.vk.api.sdk.streaming.exceptions.StreamingApiException;
 import com.vk.api.sdk.streaming.exceptions.StreamingClientException;
@@ -33,13 +36,16 @@ public class StreamComponent {
 
 	@PostConstruct
 	public void post() throws ExecutionException, InterruptedException, StreamingApiException, StreamingClientException {
+		AsyncHttpClientConfig config = new DefaultAsyncHttpClientConfig.Builder().setWebSocketMaxFrameSize(1048576).build();
+		AsyncHttpClient asyncHttpClient = new DefaultAsyncHttpClient(config);
+		streamingClient.setAsyncHttpClient(asyncHttpClient);
 		StreamingGetRulesResponse response = streamingClient.rules().get(actor).execute();
 		if (response.getRules() != null) {
 			for (StreamingRule rule : response.getRules()) {
 				streamingClient.rules().delete(actor, rule.getTag()).execute();
 			}
 		}
-		streamingClient.rules().add(actor, "1", "путин").execute();
+		streamingClient.rules().add(actor, "1", "и").execute();
 		streamingClient.stream().get(actor, streamHandler).execute();
 	}
 
