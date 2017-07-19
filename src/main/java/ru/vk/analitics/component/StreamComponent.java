@@ -5,7 +5,6 @@ import org.asynchttpclient.AsyncHttpClient;
 import org.asynchttpclient.AsyncHttpClientConfig;
 import org.asynchttpclient.DefaultAsyncHttpClient;
 import org.asynchttpclient.DefaultAsyncHttpClientConfig;
-import org.asynchttpclient.config.AsyncHttpClientConfigDefaults;
 import ru.vk.analitics.handler.StreamHandler;
 import com.vk.api.sdk.streaming.clients.actors.StreamingActor;
 import com.vk.api.sdk.streaming.exceptions.StreamingApiException;
@@ -45,7 +44,8 @@ public class StreamComponent {
 				streamingClient.rules().delete(actor, rule.getTag()).execute();
 			}
 		}
-		streamingClient.rules().add(actor, "1", "и").execute();
+		streamingClient.rules().add(actor, "23", "путин").execute();
+		streamingClient.rules().add(actor, "13", "трамп").execute();
 		streamingClient.stream().get(actor, streamHandler).execute();
 	}
 

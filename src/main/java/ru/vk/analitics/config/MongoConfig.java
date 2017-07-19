@@ -1,5 +1,7 @@
 package ru.vk.analitics.config;
 
+import ru.vk.analitics.data.dao.DataRepository;
+import ru.vk.analitics.data.dao.UserRepositoty;
 import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,7 +14,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
  */
 
 @Configuration
-@EnableMongoRepositories("ru.vk.analitics.data")
+@EnableMongoRepositories(basePackageClasses = {DataRepository.class, UserRepositoty.class})
 public class MongoConfig extends AbstractMongoConfiguration {
 
 	@Value("${spring.mongodb.host}")

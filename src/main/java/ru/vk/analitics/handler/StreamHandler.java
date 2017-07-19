@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
+
 /**
  * Created by itimofeev on 18.07.2017.
  */
@@ -22,11 +24,11 @@ public class StreamHandler extends StreamingEventHandler {
 	@Transactional
 	public void handle(StreamingCallbackMessage message) {
 		Data data = new Data();
-		data.setId(Integer.toString(message.hashCode()));
+		data.setId(UUID.randomUUID().toString());
 		data.setLink(message.getEvent().getEventUrl());
 		data.setText(message.getEvent().getText());
 		data.setType(message.getEvent().getEventType().getValue());
+		data.getTags().addAll(message.getEvent().getTags());
 		dataRepository.save(data);
-		System.out.println();
 	}
 }

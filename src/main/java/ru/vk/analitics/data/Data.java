@@ -3,6 +3,9 @@ package ru.vk.analitics.data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by itimofeev on 10.07.2017.
  */
@@ -18,6 +21,8 @@ public class Data {
 	private String type;
 
 	private String text;
+
+	private List<String> tags;
 
 	public String getId() {
 		return id;
@@ -49,5 +54,16 @@ public class Data {
 
 	public void setText(String text) {
 		this.text = text;
+	}
+
+	public List<String> getTags() {
+		if (this.tags == null) {
+			this.tags = new ArrayList<>();
+		}
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
 	}
 }
